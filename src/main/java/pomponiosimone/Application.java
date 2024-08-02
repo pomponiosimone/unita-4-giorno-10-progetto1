@@ -156,7 +156,7 @@ public class Application {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
-        System.out.print("Inserisci la data di pubblicazione del libro O rivista da cercare (es 2024-05-14): ");
+        System.out.print("Inserisci la data di pubblicazione del libro o rivista da cercare (es 2024-05-14): ");
         String input = scanner.nextLine();
 
         LocalDate dataPubblicazione;
@@ -195,6 +195,22 @@ public class Application {
         } else {
             System.out.println("Rivista con anno di pubblicazione " + dataPubblicazione.getYear() + " non trovata.");
         }
+        System.out.println("---------------------------------Esercizio 5--------------------------------------");
+
+
+        System.out.print("Inserisci l'autore del libro da cercare: ");
+        String autoreDaCercare = scanner.nextLine();
+
+
+        for (Libri libro : libriMap.values()) {
+            if (libro.getAutore().equalsIgnoreCase(autoreDaCercare)) {
+                System.out.println("Libro trovato: " + libro);
+
+            }
+
+
+        }
+        System.out.println("---------------------------------Esercizio 6--------------------------------------");
 
     }
 }
