@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -148,7 +150,51 @@ public class Application {
         } else {
             System.out.println("Rivista con ISBN " + isbnToFindRiviste + " non trovata");
         }
+        System.out.println("---------------------------------Esercizio 4--------------------------------------");
 
-        scanner.close();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+        System.out.print("Inserisci la data di pubblicazione del libro O rivista da cercare (es 2024-05-14): ");
+        String input = scanner.nextLine();
+
+        LocalDate dataPubblicazione;
+        try {
+            dataPubblicazione = LocalDate.parse(input, formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Inserisci una data valida nel formato yyyy-MM-dd.");
+            scanner.close();
+            return;
+        }
+
+        Libri libroFoundDate = null;
+        for (Libri libro : libriMap.values()) {
+            if (libro.getAnnoPubblicazione().getYear() == dataPubblicazione.getYear()) {
+                libroFoundDate = libro;
+                break;
+            }
+        }
+
+        if (libroFoundDate != null) {
+            System.out.println("Libro trovato: " + libroFoundDate);
+        } else {
+            System.out.println("Libro con anno di pubblicazione " + dataPubblicazione.getYear() + " non trovato.");
+        }
+
+        Riviste rivistaFoundDate = null;
+        for (Riviste rivista : rivisteMap.values()) {
+            if (rivista.getAnnoPubblicazione().getYear() == dataPubblicazione.getYear()) {
+                rivistaFoundDate = rivista;
+                break;
+            }
+        }
+
+        if (rivistaFoundDate != null) {
+            System.out.println("Rivista trovata: " + rivistaFoundDate);
+        } else {
+            System.out.println("Rivista con anno di pubblicazione " + dataPubblicazione.getYear() + " non trovata.");
+        }
+
     }
 }
