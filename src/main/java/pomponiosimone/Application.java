@@ -127,6 +127,28 @@ public class Application {
         rivisteMap.values().forEach(System.out::println);
 
 
+        System.out.println("---------------------------------Esercizio 3--------------------------------------");
+
+        System.out.print("Inserisci l'ISBN del libro da cercare: ");
+        int isbnToFindLibri = scanner.nextInt();
+        scanner.nextLine();
+        Libri libroFound = libriMap.get(isbnToFindLibri);
+        if (libroFound != null) {
+            System.out.println("Libro trovato: " + libroFound);
+        } else {
+            System.out.println("Libro con ISBN " + isbnToFindLibri + " non trovato.");
+        }
+
+        System.out.print("Inserisci l'ISBN della rivista da cercare: ");
+        int isbnToFindRiviste = scanner.nextInt();
+        scanner.nextLine();
+        Riviste rivistaFound = rivisteMap.get(isbnToFindRiviste);
+        if (rivistaFound != null) {
+            System.out.println("Rivista trovata: " + rivistaFound);
+        } else {
+            System.out.println("Rivista con ISBN " + isbnToFindRiviste + " non trovata");
+        }
+
         scanner.close();
     }
 }
